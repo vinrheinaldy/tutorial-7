@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://xyvp4fxomu13"]
+
+[ext_resource type="Texture2D" uid="uid://cxkmwk6kovf3" path="res://assets/Keanu.png" id="1_wv5lq"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1963037497]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=285534432]
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_wv5lq")

@@ -1,10 +1,18 @@
 extends CharacterBody3D
 
-@export var speed: float = 10.0
+@export var walk_speed: float = 10.0
+@export var sprint_speed: float = 16.0
+@export var crouch_speed: float = 4.0
+var current_speed: float = walk_speed
+
 @export var acceleration: float = 5.0
 @export var gravity: float = 9.8
 @export var jump_power: float = 5.0
 @export var mouse_sensitivity: float = 0.3
+
+var normal_head_height: float
+@export var crouch_amount: float = 0.5
+@export var crouch_transition_speed: float = 10.0
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
@@ -14,6 +22,7 @@ var camera_x_rotation: float = 0.0
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	normal_head_height = head.position.y
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -27,6 +36,17 @@ func _input(event):
 		camera.rotation_degrees.x = -camera_x_rotation
 		
 func _physics_process(delta):
+	if Input.is_action_pressed("crouch"):
+		current_speed = crouch_speed
+	elif Input.is_action_pressed("sprint"):
+		current_speed = sprint_speed
+	else:
+		current_speed = walk_speed
+
+	var target_head_height = normal_head_height
+	if Input.is_action_pressed("crouch"):
+		target_head_height = normal_head_height - crouch_amount
+	head.position.y = lerp(head.position.y, target_head_height, crouch_transition_speed * delta)
 	var movement_vector = Vector3.ZERO
 
 	if Input.is_action_pressed("movement_forward"):
@@ -40,8 +60,8 @@ func _physics_process(delta):
 
 	movement_vector = movement_vector.normalized()
 
-	velocity.x = lerp(velocity.x, movement_vector.x * speed, acceleration * delta)
-	velocity.z = lerp(velocity.z, movement_vector.z * speed, acceleration * delta)
+	velocity.x = lerp(velocity.x, movement_vector.x * current_speed, acceleration * delta)
+	velocity.z = lerp(velocity.z, movement_vector.z * current_speed, acceleration * delta)
 
 	# Apply gravity
 	if not is_on_floor():
@@ -52,3 +72,4 @@ func _physics_process(delta):
 		velocity.y = jump_power
 
 	move_and_slide()
+	print("Kecepatan sekarang: ", current_speed)

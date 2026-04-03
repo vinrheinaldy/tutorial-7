@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://ccmflr3i85isj"]
+
+[ext_resource type="Script" uid="uid://bb2qc46s7eo3k" path="res://scripts/area_trigger.gd" id="1_q5v47"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_jfasr"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_q5v47"]
+
+[node name="Area Trigger" type="Area3D" unique_id=1367074687]
+script = ExtResource("1_q5v47")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=996479578]
+shape = SubResource("SphereShape3D_jfasr")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=1830359770]
+mesh = SubResource("SphereMesh_q5v47")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

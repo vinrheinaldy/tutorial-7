@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://65h4c0mrp6k7"]
 
 [ext_resource type="PackedScene" path="res://Scenes/Box.tscn" id="1"]
+[ext_resource type="Script" uid="uid://cpkrdoqgy6drr" path="res://scripts/level.gd" id="1_fuudy"]
 [ext_resource type="PackedScene" uid="uid://bc11h547c5r7a" path="res://scenes/player.tscn" id="2_k5jlv"]
+[ext_resource type="Script" uid="uid://2mjt176dh0wh" path="res://scripts/static_body_3d.gd" id="3_xylue"]
 
 [sub_resource type="StandardMaterial3D" id="3"]
 albedo_color = Color(0.498039, 0.498039, 0.498039, 1)
@@ -22,6 +24,7 @@ material = SubResource("6")
 [sub_resource type="BoxShape3D" id="5"]
 
 [node name="Level" type="Node3D" unique_id=1917365366]
+script = ExtResource("1_fuudy")
 
 [node name="Ground" type="MeshInstance3D" parent="." unique_id=1887834249]
 mesh = SubResource("1")
@@ -68,6 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 25.0375)
 mesh = SubResource("4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Switch" unique_id=328885845]
+script = ExtResource("3_xylue")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Switch/StaticBody3D" unique_id=996601200]
 shape = SubResource("5")

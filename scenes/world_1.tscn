@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://dux70gsmw7ob"]
+
+[ext_resource type="PackedScene" uid="uid://cx5pdthn4458d" path="res://scenes/obj_lamp.tscn" id="1_5lqpt"]
+
+[node name="World 1" type="Node3D" unique_id=306214399]
+
+[node name="ObjLamp" parent="." unique_id=1293850920 instance=ExtResource("1_5lqpt")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.158325, 0, 9.786926)
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="." unique_id=1442014654]
+use_collision = true
+
+[node name="room1" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1215636882]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.934845, 2.5265808, 13.565681)
+use_collision = true
+flip_faces = true
+size = Vector3(26.86969, 6.0531616, 28.131363)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="CSGCombiner3D" unique_id=530223339]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.487324, -43.90784, 38.107788)
+size = Vector3(6.870903, 86.826775, 11.28125)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D" unique_id=1482132453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.539589, 2.4589386, 40.71434)
+flip_faces = true
+size = Vector3(6.763489, 5.92511, 26.255646)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=1019585057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.157837, 0.32611084, 34.941284)
+use_collision = true
+size = Vector3(1, 0.34777832, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=937852124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.264404, 0.32611084, 40.426636)
+use_collision = true
+size = Vector3(1, 0.34777832, 1)
