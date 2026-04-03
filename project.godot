@@ -19,6 +19,14 @@ run/main_scene="res://Scenes/Level.tscn"
 config/features=PackedStringArray("4.6")
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*uid://dqx3t02l28nyr"
+
+[global_group]
+
+item=""
+
 [input]
 
 movement_forward={

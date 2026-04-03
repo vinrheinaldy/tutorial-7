@@ -2,25 +2,26 @@
 
 [ext_resource type="PackedScene" uid="uid://dux70gsmw7ob" path="res://scenes/world_1.tscn" id="1_014kd"]
 [ext_resource type="PackedScene" uid="uid://bc11h547c5r7a" path="res://scenes/player.tscn" id="2_bswci"]
+[ext_resource type="PackedScene" uid="uid://cxe5ygsduqbrq" path="res://scenes/win_trigger.tscn" id="3_5xbjy"]
 [ext_resource type="PackedScene" uid="uid://ccmflr3i85isj" path="res://scenes/area_trigger.tscn" id="3_rus8k"]
 
 [node name="Level 1" type="Node3D" unique_id=1272366435]
 
 [node name="World 1" parent="." unique_id=306214399 instance=ExtResource("1_014kd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008453071, -2.3841858e-07, -0.0033974648)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.002508819, 2.3841858e-07, -0.025348186)
 
 [node name="Player" parent="." unique_id=935066432 instance=ExtResource("2_bswci")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.6852407, 0.60655785, 1.296493)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.825367, 0.6065581, 6.4721313)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=63126839]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 25.7144, 35.761517)
 light_energy = 10.0
-omni_range = 50.0
+omni_range = 1000.0
 
-[node name="Area Trigger" parent="." unique_id=1367074687 instance=ExtResource("3_rus8k")]
-transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 10.4644, 1.1314659, 49.073532)
+[node name="Area Trigger" parent="." unique_id=1367074687 instance=ExtResource("3_5xbjy")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 15.068387, 10.467225, 106.542656)
 sceneName = "win_screen"
 
 [node name="Area Trigger2" parent="." unique_id=1027284629 instance=ExtResource("3_rus8k")]
-transform = Transform3D(250, 0, 0, 0, 250, 0, 0, 0, 250, 8.100746, -144.02917, 36.85961)
+transform = Transform3D(250, 0, 0, 0, 250, 0, 0, 0, 250, 8.140663, -156.6397, 39.68615)
 sceneName = "level_1"

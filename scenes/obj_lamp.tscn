@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cx5pdthn4458d"]
 
+[ext_resource type="Script" uid="uid://d4lhqyijqvgkv" path="res://scripts/obj_lamp.gd" id="1_1loln"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1loln"]
 albedo_color = Color(1, 1, 0, 1)
 
@@ -9,7 +11,11 @@ albedo_color = Color(1, 1, 0, 1)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yfjgu"]
 albedo_color = Color(0.62352943, 0.16078432, 0.9764706, 1)
 
-[node name="ObjLamp" type="Node3D" unique_id=1293850920]
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_yfjgu"]
+height = 1.453125
+
+[node name="ObjLamp" type="StaticBody3D" unique_id=65179178 groups=["item"]]
+script = ExtResource("1_1loln")
 
 [node name="lamp" type="CSGCombiner3D" parent="." unique_id=68746923]
 use_collision = true
@@ -34,3 +40,7 @@ mode = 1
 spin_degrees = 360.0
 spin_sides = 8
 material = SubResource("StandardMaterial3D_yfjgu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=592211808]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12658101, 0.2734375, 0.24690938)
+shape = SubResource("CylinderShape3D_yfjgu")

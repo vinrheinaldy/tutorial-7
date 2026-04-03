@@ -16,13 +16,25 @@ var normal_head_height: float
 
 @onready var head: Node3D = $Head
 @onready var camera: Camera3D = $Head/Camera3D
+@onready var raycast: RayCast3D = $Head/Camera3D/RayCast3D
 
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
+
+var normal_hitbox_height: float
+var normal_hitbox_y : float
+@export var crouch_hitbox_height: float = 1.0
+
+var inventory: Array = []
 var camera_x_rotation: float = 0.0
 
+@onready var item_counter: Label = $CanvasLayer/ItemCounter
+# If ure reading this ObjLamp3 emg gabisa diambil lol
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	normal_head_height = head.position.y
+	normal_hitbox_height = collision_shape.shape.height
+	normal_hitbox_y = collision_shape.position.y
 
 func _input(event):
 	if Input.is_action_just_pressed("ui_cancel"):
@@ -47,6 +59,14 @@ func _physics_process(delta):
 	if Input.is_action_pressed("crouch"):
 		target_head_height = normal_head_height - crouch_amount
 	head.position.y = lerp(head.position.y, target_head_height, crouch_transition_speed * delta)
+	var target_hitbox_height = normal_hitbox_height
+	if Input.is_action_pressed("crouch"):
+		target_hitbox_height = crouch_hitbox_height
+		
+	collision_shape.shape.height = lerp(collision_shape.shape.height, target_hitbox_height, crouch_transition_speed * delta)
+	var height_difference = normal_hitbox_height - collision_shape.shape.height
+	collision_shape.position.y = normal_hitbox_y - (height_difference / 2.0)
+	
 	var movement_vector = Vector3.ZERO
 
 	if Input.is_action_pressed("movement_forward"):
@@ -72,4 +92,13 @@ func _physics_process(delta):
 		velocity.y = jump_power
 
 	move_and_slide()
-	print("Kecepatan sekarang: ", current_speed)
+
+func _process(delta):
+	if Input.is_action_just_pressed("interact"):
+		if raycast.is_colliding():
+			var target = raycast.get_collider()
+			if target.is_in_group("item"):
+				inventory.append(target.name)
+				target.queue_free()
+				
+				item_counter.text = "Item: " + str(inventory.size())
